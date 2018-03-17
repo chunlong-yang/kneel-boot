@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header :: header-css"/>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"/>
+
+<div class="container">
+
+    <div class="starter-template">
+        <h1>Normal page (No need login)</h1>
+    </div>
+    
+    
+    <!--  test table -->
+     <div>
+	    <table class="table table-striped">
+	    <caption th:text="#{user.table.caption}">Site Users</caption>
+	    <thead>
+	        <tr>
+	            <th scope="col"  >Id</th>
+	            <th scope="col"  >Property</th>
+	            <th scope="col" >Value</th>
+	            <th scope="col"  >ENV</th>
+	        </tr>
+	    </thead>
+	    <tbody>
+	        <tr th:each="user : ${currentResults.content}">
+	            <td th:text="${user.propertyid}">1</td>
+	            <td th:text="${user.property}">George</td>
+	            <td th:text="${user.value}">Washington</td>
+	            <td th:text="${user.env}">gwash</td>
+	        </tr>
+	    </tbody>
+	</table>
+	</div>
+	    
+
+</div>
+<!-- /.container -->
+
+<div th:replace="fragments/footer :: footer"/>
+
+</body>
+</html>
