@@ -1,0 +1,9 @@
+insert into sys_role_privilege(role_id,privilege_id) values (1,1);
+insert into sys_role_privilege(role_id,privilege_id) values (1,2);
+insert into sys_role_privilege(role_id,privilege_id) values (1,3);
+insert into sys_role_privilege(role_id,privilege_id) values (1,4); 
+insert into sys_role_privilege(role_id,privilege_id) values (2,2);
+insert into sys_role_privilege(role_id,privilege_id) values (2,3); 
+insert into sys_role_privilege(role_id,privilege_id) values (3,2);
+insert into sys_role_privilege(role_id,privilege_id) values (3,3);
+insert into sys_role_privilege(role_id,privilege_id) values (3,4);

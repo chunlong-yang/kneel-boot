@@ -94,10 +94,25 @@ JPA客户自定义SQL.
 
 @Query(value = "SELECT p FROM PlmPropertiesEntity p WHERE p.property = ? and p.env='DEV1'", nativeQuery = false)
 PlmPropertiesEntity findByProperty(String property);
+
+
+@ManyToMany 
+
+fetch 获取数据类型
+  FetchType.EAGER: 在获取主对象的时候，自动加载附加对象.
+  FetchType.LAZY: 懒加载， 一般使用在资源加载比较慢，使用不频繁的地方.
+  
+cascade 传播类型
+  default: none.
+  CascadeType.ALL: 更新会持久化到关联对象. 
+  
+mappedBy  
   
 ******************************************************************************************************
                                      Security
 ******************************************************************************************************  
+http://www.baeldung.com/role-and-privilege-for-spring-security-registration
+
 SpringSecurityConfig 继承WebSecurityConfigurerAdapter,可以重写验证方法.
 1. CRSF: 跨站点攻击，添加token可以把未授权的请求拦截在外面.
 我们可以生成唯一的token到页面，然后页面把这个token传递回来，来确保页面不会被跨站点攻击.

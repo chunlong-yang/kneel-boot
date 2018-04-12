@@ -10,12 +10,12 @@ import javax.persistence.SequenceGenerator;
 
 @SuppressWarnings("serial")
 @Entity
-public class PlmProperties implements Serializable {
+public class SysProperties implements Serializable {
 
 	@Id 
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "plm_propertiesseq")
-    @SequenceGenerator(sequenceName = "plm_propertiesseq", allocationSize = 1, name = "plm_propertiesseq")
-	private Long propertyid;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sys_propertiesseq")
+    @SequenceGenerator(sequenceName = "sys_propertiesseq", allocationSize = 1, name = "sys_propertiesseq")
+	private Long id;
  
 	private String property;
  
@@ -28,13 +28,13 @@ public class PlmProperties implements Serializable {
 	private String override;
  
 	private Long priority;
-
-	public Long getPropertyid() {
-		return propertyid;
+ 
+	public Long getId() {
+		return id;
 	}
 
-	public void setPropertyid(Long propertyid) {
-		this.propertyid = propertyid;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getProperty() {

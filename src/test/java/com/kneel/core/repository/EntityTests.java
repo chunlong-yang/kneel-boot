@@ -10,7 +10,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.kneel.core.BaseApplicationTest;
-import com.kneel.core.entity.PlmProperties;
+import com.kneel.core.entity.SysProperties;
 
 public class EntityTests extends BaseApplicationTest {
 
@@ -22,10 +22,10 @@ public class EntityTests extends BaseApplicationTest {
 	 */
 	@Test
 	public void testEntityManager(){
-		TypedQuery<PlmProperties> query = entitymanager.createQuery("SELECT p FROM PlmProperties p WHERE  p.env='DEV1'",PlmProperties.class);
-		List<PlmProperties> list = query.getResultList();
-		for(PlmProperties po:list){
-			System.out.println(po.getPropertyid());
+		TypedQuery<SysProperties> query = entitymanager.createQuery("SELECT p FROM SysProperties p WHERE  p.env='DEV1'",SysProperties.class);
+		List<SysProperties> list = query.getResultList();
+		for(SysProperties po:list){
+			System.out.println(po.getId());
 			System.out.println(po.getProperty());
 			System.out.println(po.getValue());
 		}
@@ -38,8 +38,8 @@ public class EntityTests extends BaseApplicationTest {
 	 */
 	@Test
 	public void testEntityFind(){
-		PlmProperties po = entitymanager.find(PlmProperties.class, 1L);
-		System.out.println(po.getPropertyid());
+		SysProperties po = entitymanager.find(SysProperties.class, 1L);
+		System.out.println(po.getId());
 		System.out.println(po.getProperty());
 		System.out.println(po.getValue());
 	}
@@ -51,10 +51,10 @@ public class EntityTests extends BaseApplicationTest {
 	@SuppressWarnings("unchecked")
 	@Test
 	public void testSQLManager(){
-		Query query = entitymanager.createNativeQuery("SELECT p.* FROM Plm_Properties p WHERE  p.env='DEV1'", PlmProperties.class);
-		List<PlmProperties> list = query.getResultList();
-		for(PlmProperties po:list){
-			System.out.println(po.getPropertyid());
+		Query query = entitymanager.createNativeQuery("SELECT p.* FROM Plm_Properties p WHERE  p.env='DEV1'", SysProperties.class);
+		List<SysProperties> list = query.getResultList();
+		for(SysProperties po:list){
+			System.out.println(po.getId());
 			System.out.println(po.getProperty());
 			System.out.println(po.getValue());
 		}
@@ -63,11 +63,11 @@ public class EntityTests extends BaseApplicationTest {
 	
 	@Test
 	public void testNamedQuery(){
-		TypedQuery<PlmProperties> query = entitymanager.createNamedQuery("User.findByProperty", PlmProperties.class);
+		TypedQuery<SysProperties> query = entitymanager.createNamedQuery("User.findByProperty", SysProperties.class);
 		query.setParameter(1, "maxThreads");
-		List<PlmProperties> list = query.getResultList();
-		for(PlmProperties po:list){
-			System.out.println(po.getPropertyid());
+		List<SysProperties> list = query.getResultList();
+		for(SysProperties po:list){
+			System.out.println(po.getId());
 			System.out.println(po.getProperty());
 			System.out.println(po.getValue());
 		}

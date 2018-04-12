@@ -8,19 +8,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.kneel.core.entity.PlmProperties;
-import com.kneel.core.entity.repository.PlmPropertiesRepository;
+import com.kneel.core.entity.SysProperties;
+import com.kneel.core.entity.repository.SysPropertiesRepository;
 
 @Controller
 public class DefaultController {
 	
 	@Autowired
-	private PlmPropertiesRepository plmPropertiesRepository;
+	private SysPropertiesRepository sysPropertiesRepository;
 	
 	@GetMapping("/")
     public String home1() {
         return "/home";
     }
+	 
 
     @GetMapping("/home")
     public String home() {
@@ -40,7 +41,7 @@ public class DefaultController {
     @GetMapping("/about/page/{pageNumber}")
     public String about(@PathVariable("pageNumber") Integer pageNumber,Model model) {
     	
-    	Page<PlmProperties> currentResults = plmPropertiesRepository.findAll(new PageRequest(pageNumber-1,20));
+    	Page<SysProperties> currentResults = sysPropertiesRepository.findAll(new PageRequest(pageNumber-1,20));
 
         model.addAttribute("currentResults", currentResults);
 
@@ -61,6 +62,11 @@ public class DefaultController {
     @GetMapping("/login")
     public String login() {
         return "/login";
+    }
+    
+    @GetMapping("/register")
+    public String register() {
+        return "/register";
     }
     
     @GetMapping("/login1")

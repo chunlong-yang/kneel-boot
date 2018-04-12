@@ -1,22 +1,22 @@
 package com.kneel.core.config;
 
-import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.web.access.AccessDeniedHandler;
+
+import com.kneel.core.config.handler.KneelAccessDeniedHandler;
+import com.kneel.core.service.KneelUserDetailsService;
 
 @EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
-	private DataSource dataSource;
+	private KneelUserDetailsService kneelUserDetailsService;
 
 	@Autowired
-	private AccessDeniedHandler accessDeniedHandler;
+	private KneelAccessDeniedHandler accessDeniedHandler;
 
 	/**
 	 * 配置user-detail服务
@@ -33,20 +33,12 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	 */
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-		// 基于内存的用户存储、认证
-		auth.inMemoryAuthentication().withUser("admin").password("admin")
-				.authorities("ROLE_ADMIN", "ROLE_USER").and().withUser("user")
-				.password("user").authorities("ROLE_USER");
-
-		// 基于数据库的用户存储、认证
-		// auth.jdbcAuthentication()
-		// .dataSource(dataSource)
-		// .usersByUsernameQuery(
-		// "select account,password,true from user where account=?")
-		// .authoritiesByUsernameQuery(
-		// "select account,role from user where account=?");
-		// 基于UserDetailsService用户存储、认证
-		// auth.userDetailsService(securityUserDetailsService);
+		//1. 基于内存的用户存储、认证
+//		auth.inMemoryAuthentication().withUser("admin").password("admin")
+//				.authorities("ROLE_ADMIN", "ROLE_USER").and().withUser("user")
+//				.password("user").authorities("ROLE_USER");
+		//2. 基于UserDetailsService用户存储、认证
+		auth.userDetailsService(kneelUserDetailsService); 
 
 	}
 
@@ -71,12 +63,14 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/css/**", "/js/**").permitAll()
-				.antMatchers("/admin/**").hasRole("ADMIN")
-				.antMatchers("/user/**").hasRole("USER")
-				.and().formLogin().loginPage("/login").permitAll()//自定义login page
-				.and().logout().permitAll()
-				.and().formLogin().failureUrl("/login?error")
-				.and().exceptionHandling().accessDeniedHandler(accessDeniedHandler);
+		http.authorizeRequests()
+				.antMatchers("/register","/user/register","/user/logout").permitAll()//注册页面可以访问
+				.antMatchers("/css/**","/js/**","/webjars/**").permitAll()//默认css,js可以访问 
+				.antMatchers("/admin/**").hasRole("ADMIN")//admin下面， 必须角色管理员才能访问.
+				.antMatchers("/user/**").hasAnyRole("ADMIN","USER")//user下面， 必须角色 用户才能访问  
+				.anyRequest().authenticated()//所有请求必须认证后才能访问
+				.and().formLogin().loginPage("/login").failureUrl("/login?error").permitAll()//定义login page,并且login Page 可以任意访问
+				.and().logout().logoutUrl("/logout").logoutSuccessUrl("/login?logout").permitAll()//定义logout page,并且logout page可以任意访问
+				.and().exceptionHandling().accessDeniedHandler(accessDeniedHandler);//定义没有权限访问处理跳转页面403.
 	}
 }

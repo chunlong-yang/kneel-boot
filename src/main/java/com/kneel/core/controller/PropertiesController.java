@@ -9,25 +9,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.kneel.core.entity.PlmProperties;
-import com.kneel.core.entity.repository.PlmPropertiesRepository;
+import com.kneel.core.entity.SysProperties;
+import com.kneel.core.entity.repository.SysPropertiesRepository;
 
 @RestController
 @RequestMapping("/prop")
 public class PropertiesController {
 	
 	@Autowired
-	private PlmPropertiesRepository plmPropertiesRepository;
+	private SysPropertiesRepository sysPropertiesRepository;
 	
 	
 	@GetMapping("/list")
-	public List<PlmProperties> getAllNotes() { 
-	    return new ArrayList<PlmProperties>((Collection<PlmProperties>)plmPropertiesRepository.findAll());
+	public List<SysProperties> getAllNotes() { 
+	    return new ArrayList<SysProperties>((Collection<SysProperties>)sysPropertiesRepository.findAll());
 	}
 	
 	@GetMapping("/getByProperty")
-	public PlmProperties getByProperty(String property){
-		return plmPropertiesRepository.findByProperty(property);
+	public SysProperties getByProperty(String property){
+		return sysPropertiesRepository.findByProperty(property);
 	}
 
 }

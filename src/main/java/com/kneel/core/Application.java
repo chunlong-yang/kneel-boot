@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication(scanBasePackages={
 		"com.kneel.core.entity.repository"
+		,"com.kneel.core.service"
 		,"com.kneel.core.controller"
 		,"com.kneel.core.config"
 })

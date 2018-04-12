@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <div th:replace="fragments/header :: header-css"/>
 </head>
@@ -16,8 +16,31 @@
     
     <!--  test table -->
      <div>
+        <span sec:authorize="isAuthenticated()">
+        	Login.
+        </span>  
+         <span sec:authorize="hasAuthority('USER_MENU_VIEW')">
+         	use hasAuthority to check USER_MENU_VIEW
+        	USER_MENU_VIEW.
+        </span> 
+          <span sec:authorize="hasAuthority('USER_PAGE_BUTTON')">
+            use hasAuthority to check USER_PAGE_BUTTON
+        	USER_PAGE_BUTTON.
+        </span> 
+         <span sec:authorize="hasRole('ROLE_USER_PAGE_WRITE')">
+        	USER_PAGE_WRITE, you must be start with ROLE_.
+        </span>  
+         <span sec:authorize="hasRole('ROLE_ADMIN')">
+        	ROLE_ADMIN.
+        </span> 
+        <span sec:authorize="hasRole('ROLE_SELLER')">
+        	ROLE_SELLER.
+        </span> 
+        <span sec:authorize="hasRole('ROLE_USER')">
+        	ROLE_USER.
+        </span> 
 	    <table class="table table-striped">
-	    <caption th:text="#{user.table.caption}">Site Users</caption>
+	    <caption>Site Users</caption>
 	    <thead>
 	        <tr>
 	            <th scope="col"  >Id</th>
@@ -28,7 +51,7 @@
 	    </thead>
 	    <tbody>
 	        <tr th:each="user : ${currentResults.content}">
-	            <td th:text="${user.propertyid}">1</td>
+	            <td th:text="${user.id}">1</td>
 	            <td th:text="${user.property}">George</td>
 	            <td th:text="${user.value}">Washington</td>
 	            <td th:text="${user.env}">gwash</td>

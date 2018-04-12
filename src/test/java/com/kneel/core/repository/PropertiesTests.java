@@ -9,13 +9,13 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.kneel.core.BaseApplicationTest;
-import com.kneel.core.entity.PlmProperties;
-import com.kneel.core.entity.repository.PlmPropertiesRepository;
+import com.kneel.core.entity.SysProperties;
+import com.kneel.core.entity.repository.SysPropertiesRepository;
  
 public class PropertiesTests extends BaseApplicationTest {
 	
 	@Autowired
-	private PlmPropertiesRepository plmPropertiesRepository;
+	private SysPropertiesRepository sysPropertiesRepository;
 	
 	
 	@Test
@@ -24,10 +24,10 @@ public class PropertiesTests extends BaseApplicationTest {
 	
 	@Test
 	public void testJap(){
-		Iterator<PlmProperties> it = plmPropertiesRepository.findAll().iterator(); 
+		Iterator<SysProperties> it = sysPropertiesRepository.findAll().iterator(); 
 		while(it.hasNext()){
-			PlmProperties po = it.next();
-			System.out.println(po.getPropertyid());
+			SysProperties po = it.next();
+			System.out.println(po.getId());
 			System.out.println(po.getProperty());
 			System.out.println(po.getValue());
 		}
@@ -35,9 +35,9 @@ public class PropertiesTests extends BaseApplicationTest {
 	
 	@Test
 	public void testNamedQuery(){
-		List<PlmProperties> it = plmPropertiesRepository.findByPropcategory("archive"); 
-		for(PlmProperties po:it){ 
-			System.out.println(po.getPropertyid());
+		List<SysProperties> it = sysPropertiesRepository.findByPropcategory("archive"); 
+		for(SysProperties po:it){ 
+			System.out.println(po.getId());
 			System.out.println(po.getProperty());
 			System.out.println(po.getValue());
 		}
@@ -45,9 +45,9 @@ public class PropertiesTests extends BaseApplicationTest {
 	
 	@Test
 	public void testFindByEnv(){
-		List<PlmProperties> it = plmPropertiesRepository.findByEnv("DEV1"); 
-		for(PlmProperties po:it){ 
-			System.out.println(po.getPropertyid());
+		List<SysProperties> it = sysPropertiesRepository.findByEnv("DEV1"); 
+		for(SysProperties po:it){ 
+			System.out.println(po.getId());
 			System.out.println(po.getProperty());
 			System.out.println(po.getValue());
 		}
@@ -55,9 +55,9 @@ public class PropertiesTests extends BaseApplicationTest {
 	
 	@Test
 	public void testList(){
-		List<PlmProperties> it = new ArrayList<PlmProperties>((Collection<PlmProperties>)plmPropertiesRepository.findAll());
-		for(PlmProperties po:it){ 
-			System.out.println(po.getPropertyid());
+		List<SysProperties> it = new ArrayList<SysProperties>((Collection<SysProperties>)sysPropertiesRepository.findAll());
+		for(SysProperties po:it){ 
+			System.out.println(po.getId());
 			System.out.println(po.getProperty());
 			System.out.println(po.getValue());
 		}
@@ -65,16 +65,16 @@ public class PropertiesTests extends BaseApplicationTest {
 	
 	@Test
 	public void testFindByProperty(){
-		PlmProperties po = plmPropertiesRepository.findByProperty("maxThreads");
+		SysProperties po = sysPropertiesRepository.findByProperty("maxThreads");
 		 
-		System.out.println(po.getPropertyid());
+		System.out.println(po.getId());
 		System.out.println(po.getProperty());
 		System.out.println(po.getValue()); 
 	} 
 	
 	@Test
 	public void testInsert(){
-		PlmProperties entity = new PlmProperties();
+		SysProperties entity = new SysProperties();
 		entity.setEnv("DEV");
 		entity.setOverride("default");
 		entity.setPriority(0L);
@@ -82,6 +82,6 @@ public class PropertiesTests extends BaseApplicationTest {
 		entity.setProperty("RetentionMonths");
 		entity.setValue("144");
 		
-		plmPropertiesRepository.save(entity);
+		sysPropertiesRepository.save(entity);
 	}
 }
