@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='exceptiongrid'>
+	<inherits name="com.google.gwt.logging.Logging" />
+	
+	<set-property name="gwt.logging.logLevel" value="WARNING" />
+	<set-property name="gwt.logging.enabled" value="FALSE" />
+	<set-property name="gwt.logging.systemHandler" value="DISABLED" />
+	<set-property name="gwt.logging.consoleHandler" value="DISABLED" />
+	<set-property name="gwt.logging.developmentModeHandler" value="DISABLED" />
+	<set-property name="gwt.logging.popupHandler" value="DISABLED" />
+	<set-property name="gwt.logging.firebugHandler" value="DISABLED" />
+	
+	<inherits name='com.google.gwt.user.User' />
+  <!-- 在编译的时候不包含js,skins等等，外表资源自己加载->
+  <!--<script> var isomorphicDir = "MODULE_NAME/sc/"; </script> -->
+	<inherits name='com.smartgwt.SmartGwtNoSmartClient' />
+  
+  <!-- 包含另一个组件 -->
+	<!-- inherits Common module-->
+	<inherits name='com.statestreet.plm.common.Common' />
+  
+  <!-- 这个组件的point类 -->
+	<!-- entry point class -->
+	<entry-point class='com.statestreet.plm.grid.exception.client.ExceptionGrid' />
+  
+  <!-- 源代码的包明 -->
+	<!-- Specify the paths for translatable code -->
+	<source path='client' />
+	<source path='shared' />
+	<source path='transport' />
+</module>
