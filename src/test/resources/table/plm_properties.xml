@@ -1,0 +1,11 @@
+<table tableName="plm_properties" domainName="plm_properties" desc="plm_properties">
+	<columns>
+		<column columnName="PROPERTYID" propertyName="propertyid" desc="propertyid" columnType="NUMERIC" javaType="Long" formType="numberbox" order="1"/>
+		<column columnName="PROPERTY" propertyName="property" desc="property" columnType="VARCHAR" javaType="String" formType="textbox" order="2"/>
+		<column columnName="VALUE" propertyName="value" desc="value" columnType="VARCHAR" javaType="String" formType="textbox" order="3"/>
+		<column columnName="ENV" propertyName="env" desc="env" columnType="VARCHAR" javaType="String" formType="textbox" order="4"/>
+		<column columnName="PROPCATEGORY" propertyName="propcategory" desc="propcategory" columnType="VARCHAR" javaType="String" formType="textbox" order="5"/>
+		<column columnName="OVERRIDE" propertyName="override" desc="override" columnType="VARCHAR" javaType="String" formType="textbox" order="6"/>
+		<column columnName="PRIORITY" propertyName="priority" desc="priority" columnType="NUMERIC" javaType="Long" formType="numberbox" order="7"/>
+	</columns>
+</table>

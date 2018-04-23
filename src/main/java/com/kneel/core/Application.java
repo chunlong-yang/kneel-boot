@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 		,"com.kneel.core.service"
 		,"com.kneel.core.controller"
 		,"com.kneel.core.config"
+		,"com.kneel.core.gen" 
 })
 @EnableJpaRepositories("com.kneel.core.entity")
 public class Application {

@@ -5,7 +5,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@SpringBootApplication(scanBasePackages="com.kneel.core.entity.repository")
+@SpringBootApplication(scanBasePackages={
+		"com.kneel.core.entity.repository" 
+		,"com.kneel.core.gen" 
+})
 @EnableJpaRepositories("com.kneel.core.entity")
 public class ApplicationTest {
 

@@ -1,0 +1,6 @@
+REPORTID,REPORTNAME,DBOBJECTNAME,DBOBJECTTYPE,REPORTTYPE,EXCTYPE,RETROFLAG,ACCTACTIVE
+11,TMV_Client_Report_PDF,,V,ACT,,N,N
+102,Cash_Balances,plm_rpt_vw_cashbalances,SP,QRY,C,Y,Y
+109,User_Info,plm_rpt_vw_userinfo,V,QRY,,N,N
+203,Adjustments_Summary,plm_rpt_vw_adjustment_summary,MV,QRY,,N,N
+204,Adjustments,plm_rpt_vw_adjustments,V,QRY,,N,N

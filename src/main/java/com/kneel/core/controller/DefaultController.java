@@ -21,7 +21,6 @@ public class DefaultController {
     public String home1() {
         return "/home";
     }
-	 
 
     @GetMapping("/home")
     public String home() {
@@ -62,11 +61,6 @@ public class DefaultController {
     @GetMapping("/login")
     public String login() {
         return "/login";
-    }
-    
-    @GetMapping("/register")
-    public String register() {
-        return "/register";
     }
     
     @GetMapping("/login1")

@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header :: header-css"/>
+	<script type="text/javascript" th:src="@{/js/build.js}" ></script>               
+</head> 
+<body onLoad="ready()">
+
+<div th:replace="fragments/header :: header"/>
+
+<div class="container"> 
+	<a th:href="@{/csv/plm_rpt_reportconfig.csv}">plm_rpt_reportconfig.csv</a> | <a th:href="@{/csv/plm_rpt_columnconfig.csv}">plm_rpt_columnconfig.csv</a> | <a th:href="@{/csv/item.sql}">item.sql</a> |
+	<hr/>
+	
+	<form id="file-form" th:action="@{/build/uploadTemplate}" method="post"  enctype="multipart/form-data">
+		 <div class="form-group row">
+		 	  <div th:if="${error}">
+                   <div class="alert alert-danger" th:text="${error}"> 
+                   </div>
+               </div>
+               <div th:if="${message}">
+                   <div class="alert alert-info" th:text="${message}"> 
+                   </div>
+               </div>
+		 
+			 <label for="csfile" class="col-sm-2 control-label">Upload Csv</label> 
+		     <div class="col-sm-4"> 
+			     <input type="file" class="form-control-file" id="csfile" name="csfile"/>  
+			</div> 
+			<div class="col-sm-4">
+		        <button type="submit" class="btn btn-primary">Upload</button>
+		    </div>
+		</div> 
+	</form>
+
+	<hr/>
+
+	<form id="formid" th:action="@{/build/genSql}" method="post">
+	 <div class="form-group row">
+	    <label for="project" class="col-sm-2 control-label">Project</label> 
+	     <div class="col-sm-4"> 
+		    <select id="project" name="project" onchange="projectChange()" class="form-control">
+<!-- 			  <option value ="C:\\eclipse\\workspace\\spring-boot\\kneel-boot">kneel-boot</option> -->
+			  <option value ="C:\\usr">Web</option> 
+			</select> 
+		</div>
+	</div>
+ 
+ 	<div class="form-group row">
+	  <label for="res" class="col-sm-2 col-form-label">Resources</label>
+	  <div class="col-sm-4">
+	    <select id="res" name="res" onchange="resChange()" class="form-control">
+<!-- 		  <option value ="src\\test\\resources">src\\test\\resources</option> -->
+		  <option value ="resources">resources</option> 
+		</select> 
+	  </div>
+	</div>
+	 	
+	
+	<div class="form-group row">
+	  <label for="csv" class="col-sm-2 col-form-label">CSV File</label>
+	  <div class="col-sm-4">
+	    <select id="csv" name="csv" th:src="@{/build/listcsv}"  class="form-control">
+	        <option value =""></option> 
+		</select> 
+	  </div>
+	</div> 
+	
+	 <div class="form-group row">
+      <div class="offset-sm-2 col-sm-10">
+        <button type="button" class="btn btn-primary" onclick="runGenerator()">Generator</button>
+      </div>
+    </div>  
+    </form> 
+ 
+ 	<div id="sqls"></div>
+ 	
+ 	<hr/>
+ 	
+</div>
+<!-- /.container -->
+
+<div th:replace="fragments/footer :: footer"/>
+
+</body>
+</html>

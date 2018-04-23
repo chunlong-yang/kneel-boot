@@ -1,0 +1,9 @@
+COLUMNID,REPORTID,COLUMNCODE,COLUMNDECODE,DATATYPE,ISTIMEZONENEEDED,ISFILTERABLE,ISFILTERREQUIRED,FILTERTYPE,FILTERSERVICENAME,ISLAZYLOADED,DEFAULTFILTERVALUE,ISHIDDEN,TRANSLATESQL,ORDERBYFIELD,STATFUNC
+plm_columnconfigidseq.nextval,102,String,TMV Comment,C,N,Y,N,T,,N,,N,,"NVL(Trim(tmvcomment),' ')",
+plm_columnconfigidseq.nextval,102,Number,Total Exceptions % of Int Mgr Balance Total ,N,N,Y,N,N,,N,,N,,"NVL(percentofimbalancetotal,-99999999999999999999)",
+plm_columnconfigidseq.nextval,102,Date,Last Amended,D,Y,N,N,D,,N,,N,,"NVL(lastamendeddatefilter,to_date('19000101','yyyyMMdd'))",
+plm_columnconfigidseq.nextval,102,Datefilter,Last Amended,D,Y,Y,N,D,,N,,Y,,,
+plm_columnconfigidseq.nextval,102,asofdate,As-of Date,D,N,Y,Y,L,getAsofDateLookupService,N,,Y,1=1,,
+plm_columnconfigidseq.nextval,102,asofdatedisp,As-of Date,D,N,N,N,L,,N,,N,,asofdate,
+plm_columnconfigidseq.nextval,102,periodcodeid,Period,N,N,Y,Y,L,getPeriodLookupService,N,,Y,,,
+plm_columnconfigidseq.nextval,102,totaladjnum,Total # Adjustments,N,N,N,N,N,,N,,N,,"nvl(totaladjnum,-99999999999999999999)",sum(totaladjnum)

@@ -1,0 +1,3 @@
+COLUMNID,REPORTID,COLUMNCODE,COLUMNDECODE,DATATYPE,ISTIMEZONENEEDED,ISFILTERABLE,ISFILTERREQUIRED,FILTERTYPE,FILTERSERVICENAME,ISLAZYLOADED,DEFAULTFILTERVALUE,ISHIDDEN,TRANSLATESQL,ORDERBYFIELD,STATFUNC
+plm_columnconfigidseq.nextval,102,percentofimbalancetotal,Total Exceptions % of Int Mgr Balance Total ,N,N,Y,N,N,,N,,N,,"NVL(percentofimbalancetotal,-99999999999999999999)",
+plm_columnconfigidseq.nextval,102,percentofextmgrbalancetotal,Total Exceptions % of Ext Mgr Balance Total ,N,N,Y,N,N,,N,,N,,"NVL(percentofimbalancetotal,-99999999999999999999)",
